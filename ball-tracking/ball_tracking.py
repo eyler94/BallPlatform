@@ -1,6 +1,8 @@
 # USAGE
-# python ball_tracking.py --video ball_tracking_example.mp4
-# python ball_tracking.py
+# python3 ball_tracking.py --video ball_tracking_example.mp4
+# python3 ball_tracking.py
+# python3 ball_tracking.py
+
 
 # import the necessary packages
 from collections import deque
@@ -17,6 +19,8 @@ ap.add_argument("-v", "--video",
 	help="path to the (optional) video file")
 ap.add_argument("-b", "--buffer", type=int, default=64,
 	help="max buffer size")
+ap.add_argument("-i", "--internal",
+	help="enables internal webcam instead of exteral.")
 args = vars(ap.parse_args())
 
 # define the lower and upper boundaries of the "green"
@@ -41,7 +45,7 @@ pts = deque(maxlen=args["buffer"])
 # if a video path was not supplied, grab the reference
 # to the webcam
 if not args.get("video", False):
-	vs = VideoStream(src=0).start()
+	vs = VideoStream(src=2).start()
 
 # otherwise, grab a reference to the video file
 else:
