@@ -28,14 +28,14 @@ args = vars(ap.parse_args())
 # list of tracked points
 
 
-# Green ball (H: 0 - 180, S: 0 - 255, V: 0 - 255)
-Lower = (29, 86, 6)
-Upper = (64, 255, 255)
+# # Green ball (H: 0 - 180, S: 0 - 255, V: 0 - 255)
+# Lower = (29, 86, 6)
+# Upper = (64, 255, 255)
 
-# # Orange ball
-# Lower = (16, 68, 6)
-# Upper = (26, 92, 255)
-#
+# Orange pingpong ball
+Lower = (0, 119, 177)
+Upper = (15, 255, 255)
+
 # # White ball
 # Lower = (0, 0, 60)
 # Upper = (360, 0, 100)

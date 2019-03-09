@@ -13,7 +13,7 @@ cv2.namedWindow('result')
 h,s,v = 100,100,100
 
 # Creating track bar
-cv2.createTrackbar('h', 'result',0,360,nothing)
+cv2.createTrackbar('h', 'result',0,179,nothing)
 cv2.createTrackbar('s', 'result',0,255,nothing)
 cv2.createTrackbar('v', 'result',0,255,nothing)
 
