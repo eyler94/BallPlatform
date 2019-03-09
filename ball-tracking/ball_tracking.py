@@ -1,7 +1,7 @@
 # USAGE
 # python3 ball_tracking.py --video ball_tracking_example.mp4
 # python3 ball_tracking.py
-# python3 ball_tracking.py
+# python3 ball_tracking.py -c #camera number
 
 
 # import the necessary packages
@@ -19,8 +19,8 @@ ap.add_argument("-v", "--video",
 	help="path to the (optional) video file")
 ap.add_argument("-b", "--buffer", type=int, default=64,
 	help="max buffer size")
-ap.add_argument("-i", "--internal",
-	help="enables internal webcam instead of exteral.")
+ap.add_argument("-c", "--camera", type=int, default=0,
+	help="camera selection. 0 or blank is internal.")
 args = vars(ap.parse_args())
 
 # define the lower and upper boundaries of the "green"
@@ -45,7 +45,10 @@ pts = deque(maxlen=args["buffer"])
 # if a video path was not supplied, grab the reference
 # to the webcam
 if not args.get("video", False):
-	vs = VideoStream(src=2).start()
+    #if not args.get("camera", False):
+    #	vs = VideoStream(src=0).start()
+    #else:
+    vs = VideoStream(src=args["camera"]).start()
 
 # otherwise, grab a reference to the video file
 else:
