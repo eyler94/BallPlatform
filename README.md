@@ -9,4 +9,4 @@ Be aware, HSV values are input as follows.
 
 Also, hsv_detect was sourced from Aruldd at https://stackoverflow.com/questions/10948589/choosing-the-correct-upper-and-lower-hsv-boundaries-for-color-detection-withcv .
 
-Arduino serial communication requires the following uncommon libraries: serial.
+Arduino serial communication requires the following uncommon libraries: serial, pyserial.
