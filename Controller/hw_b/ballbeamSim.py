@@ -34,13 +34,13 @@ while t < P.t_end:  # main simulation loop
         thdot = (th[0]-theta.nsin(t-P.Ts))/P.Ts
         ph = phi.nsin(t)
         phdot = (ph[0]-phi.nsin(t-P.Ts))/P.Ts
-        ballbeam.propagateDynamics([th,thdot,ph,phdot])  # Propagate the dynamics
+        ballbeam.propagateDynamics([th[0],ph[0]])  # Propagate the dynamics
         t = t + P.Ts  # advance time by Ts
     # update animation and data plots
     x_animation.drawBallbeam(ballbeam.states(), 0, th)
     y_animation.drawBallbeam(ballbeam.states(), 2, ph)
     top_animation.drawBallbeamTop(ballbeam.states())
-    dataPlot.updatePlots(t, ref_input, ballbeam.states(), [th, ph])
+    dataPlot.updatePlots(t, ref_input, ballbeam.states(), [th[0], ph[0]])
     plt.pause(0.0001)  # the pause causes the figure to be displayed during the simulation
 
 # Keeps the program from clonsing until the user presses a button.

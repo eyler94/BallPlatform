@@ -14,6 +14,10 @@ class ballbeamDynamics:
                                 [P.xdot0],      # Theta initial beam angle
                                 [P.y0],       # zdot initial ball velocity
                                 [P.ydot0]])  # Thetadot initial beam angular velocity
+        self.th_d1 = 0.
+        # self.th_dot = 0.
+        self.ph_d1 = 0.
+        # self.ph_dot = 0.
         #################################################
         # The parameters for any physical system are never known exactly.  Feedback
         # systems need to be designed to be robust to this uncertainty.  In the simulation
@@ -50,9 +54,11 @@ class ballbeamDynamics:
         y = state.item(2)
         ydot = state.item(3)
         theta = u[0]
-        thetadot = u[1]
-        phi = u[2]
-        phidot = u[3]
+        thetadot = (theta - self.th_d1)/P.Ts
+        self.th_d1 = theta
+        phi = u[1]
+        phidot = (phi - self.ph_d1)/P.Ts
+        self.ph_d1 = phi
         # The equations of motion.
         xddot = (1.0/self.m1)*(self.m1*x*thetadot**2
                                - self.m1*self.g*np.sin(theta))
@@ -74,8 +80,8 @@ class ballbeamDynamics:
         ydot = self.state.item(3)
         # theta = self.state.item(1)
         # # add Gaussian noise to outputs
-        z_m = z + random.gauss(0, 0.001)
-        theta_m = theta + random.gauss(0, 0.001)
+        # z_m = z + random.gauss(0, 0.001)
+        # theta_m = theta + random.gauss(0, 0.001)
         # return measured outputs
         return [x, y]
         # return [z_m, theta_m]

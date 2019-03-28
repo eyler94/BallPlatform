@@ -16,28 +16,31 @@ class ballbeamController:
         self.integrator_y = 0.0        # integrator
         self.error_x_d1 = 0.0          # error signal delayed by 1 sample
         self.error_y_d1 = 0.0          # error signal delayed by 1 sample
-        self.K = P13.K               # state feedback gain
-        self.ki = P13.ki             # Integral gain
+        self.Kx = P13.Kx               # state feedback gain
+        self.kxi = P13.kxi             # Integral gain
+        self.Ky = P13.Ky               # state feedback gain
+        self.kyi = P13.kyi             # Integral gain
         self.L = P13.L                 # observer gain
         self.A = P13.A                 # system model
         self.B = P13.B
         self.C = P13.C
-        self.limit = P.Fmax          # Maximum force
+        self.theta_limit = P.Thmax          # Maximum force
+        self.phi_limit = P.Phmax
         self.beta = P.beta           # dirty derivative gain
         self.Ts = P.Ts               # sample rate of controller
 
-    def u(self, r_input, c_state):
+    def u(self, x_ref, y_ref, c_state):
         # y_r is the referenced input
         # y is the current state
-        x_r = r_input[0]
+        x_r = x_ref
         x = c_state[0]
-        y_r = r_input[2]
-        y = c_state[2]
+        y_r = y_ref
+        y = c_state[1]
 
         # update the observer and extract z_hat
         self.updateObserver(c_state)
-        #######################################################################
-        z_hat = self.x_hat[1]
+        x_hat = self.z_hat[0]
+        y_hat = self.z_hat[1]
 
         # integrate error
         error_x = x_r - x
@@ -45,48 +48,54 @@ class ballbeamController:
         self.integrateError(error_x, error_y)
 
         # Construct the state
-        ze = np.matrix([[0.0], [0.0], [0.0], [0.0]])
-        x_tilde = self.x_hat - ze
+        xe = np.matrix([[0.0], [0.0]]) ### Change in real life to use beginning position of the ball.
+        ye = np.matrix([[0.0], [0.0]]) ### Change in real life to use beginning position of the ball.
+        x_tilde = np.matrix([[self.z_hat.item(0)],[self.z_hat.item(1)]]) - xe
+        y_tilde = np.matrix([[self.z_hat.item(2)],[self.z_hat.item(3)]]) - ye
 
         # Compute the state feedback controller
-        Theta_unsat = -self.K*x_tilde - self.ki*self.integrator_x
-        Phi_unsat = -self.K*x_tilde - self.ki*self.integrator_y
+        Theta_unsat = float(-self.Kx*x_tilde) - self.kxi*self.integrator_x
+        Phi_unsat = float(-self.Ky*y_tilde) - self.kyi*self.integrator_y
+        Theta = self.saturate(Theta_unsat,self.theta_limit)
+        Phi = self.saturate(Phi_unsat,self.phi_limit)
+        self.integrator_x_AntiWindup(Theta, Theta_unsat)
+        self.integrator_y_AntiWindup(Phi, Phi_unsat)
+        self.updateAngle(Theta, Phi)
+        return [Theta, Phi]
 
-        F_unsat = F_tilde
-        F = self.saturate(F_unsat)
-        self.integratorAntiWindup(F, F_unsat)
-        self.updateForce(Th, Ph)
-        return [F.item(0)]
-
-    def updateObserver(self, y_m):
+    def updateObserver(self, z_m):
         N = 10
-        y = np.matrix([
-            [y_m[1]],
-            [y_m[0]]])
-        xe = np.matrix([[0.0], [P.ze], [0.0], [0.0]])
+        z = np.matrix([
+            [z_m[0]],
+            [z_m[1]]])
+        ze = np.matrix([[0.0], [0.0], [0.0], [0.0]]) ### Change in real life to use beginning position of the ball.
         for i in range(0, N):
-            self.x_hat = self.x_hat + self.Ts/float(N)*(
-                self.A*(self.x_hat - xe)
-                + self.B*(self.F_d1 - P.Fe)
-                + self.L*(y-self.C*self.x_hat)
-            )
+            self.z_hat = self.z_hat + self.Ts/float(N)*(
+                self.A*(self.z_hat - ze)
+                + self.B*np.matrix([[self.Th_d1],[self.Ph_d1]])
+                + self.L*(z-self.C*self.z_hat))
 
-    def updateForce(self, Th, Ph):
-        self.Th_d1 = Th
-        self.Ph_d1 = Ph
+    def updateAngle(self, Theta, Phi):
+        self.Th_d1 = Theta
+        self.Ph_d1 = Phi
 
     def integrateError(self, error_x, error_y):
-        self.integrator_x = self.integrator_x + (self.Ts/2.0)*(error + self.error_x_d1)
-        self.integrator_y = self.integrator_y + (self.Ts/2.0)*(error + self.error_y_d1)
+        self.integrator_x = self.integrator_x + (self.Ts/2.0)*(error_x + self.error_x_d1)
+        self.integrator_y = self.integrator_y + (self.Ts/2.0)*(error_y + self.error_y_d1)
         self.error_x_d1 = error_x
         self.error_y_d1 = error_y
 
-    def integratorAntiWindup(self, F, F_unsat):
+    def integrator_x_AntiWindup(self, Theta, Theta_unsat):
         # integrator anti - windup
-        if self.ki != 0.0:
-            self.integrator = self.integrator + P.Ts/self.ki*(F-F_unsat)
+        if self.kxi != 0.0:
+            self.integrator_x = self.integrator_x + P.Ts/self.kxi*(Theta-Theta_unsat)
 
-    def saturate(self,u):
-        if abs(u) > self.limit:
-            u = self.limit*np.sign(u)
+    def integrator_y_AntiWindup(self, Phi, Phi_unsat):
+        # integrator anti - windup
+        if self.kyi != 0.0:
+            self.integrator_y = self.integrator_y + P.Ts/self.kyi*(Phi-Phi_unsat)
+
+    def saturate(self,u,limit):
+        if abs(u) > limit:
+            u = limit*np.sign(u)
         return u

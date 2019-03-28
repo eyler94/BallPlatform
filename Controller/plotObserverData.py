@@ -20,21 +20,21 @@ class plotObserverData:
 
         # Instantiate lists to hold the time and data histories
         self.time_history = []  # time
-        self.z_history = []  # position z
-        self.z_hat_history = []  # estimate of z
-        self.theta_history = []  # angle theta
-        self.theta_hat_history = [] # estimate of theta
-        self.z_dot_history = []
-        self.z_hat_dot_history = []
-        self.theta_dot_history = []
-        self.theta_hat_dot_history = []
+        self.x_history = []  # position z
+        self.x_hat_history = []  # estimate of z
+        self.y_history = []  # angle theta
+        self.y_hat_history = [] # estimate of theta
+        self.x_dot_history = []
+        self.x_hat_dot_history = []
+        self.y_dot_history = []
+        self.y_hat_dot_history = []
 
         # create a handle for every subplot.
         self.handle = []
-        self.handle.append(myPlot(self.ax[0], ylabel='z (m)', title='Ball on Beam Data'))
-        self.handle.append(myPlot(self.ax[1], ylabel='theta (deg)'))
-        self.handle.append(myPlot(self.ax[2], ylabel='z_dot (m/s)'))
-        self.handle.append(myPlot(self.ax[3], xlabel='t(s)', ylabel='theta_dot (deg/s)'))
+        self.handle.append(myPlot(self.ax[0], ylabel='x (m)', title='Ball on Beam Data'))
+        self.handle.append(myPlot(self.ax[1], ylabel='y (m)'))
+        self.handle.append(myPlot(self.ax[2], ylabel='x_dot (m/s)'))
+        self.handle.append(myPlot(self.ax[3], xlabel='t(s)', ylabel='y_dot (m/s)'))
 
     def updatePlots(self, t, x, x_hat):
         '''
@@ -42,20 +42,20 @@ class plotObserverData:
         '''
         # update the time history of all plot variables
         self.time_history.append(t)  # time
-        self.z_history.append(x[0])
-        self.theta_history.append(x[1])
-        self.z_dot_history.append(x[2])
-        self.theta_dot_history.append(x[3])
-        self.z_hat_history.append(x_hat[1])
-        self.theta_hat_history.append(x_hat[0])
-        self.z_hat_dot_history.append(x_hat[3])
-        self.theta_hat_dot_history.append(x_hat[2])
+        self.x_history.append(x[0])
+        self.y_history.append(x[2])
+        self.x_dot_history.append(x[1])
+        self.y_dot_history.append(x[3])
+        self.x_hat_history.append(x_hat[0])
+        self.y_hat_history.append(x_hat[1])
+        self.x_hat_dot_history.append(x_hat[2])
+        self.y_hat_dot_history.append(x_hat[3])
 
         # update the plots with associated histories
-        self.handle[0].updatePlot(self.time_history, [self.z_history, self.z_hat_history])
-        self.handle[1].updatePlot(self.time_history, [self.theta_history, self.theta_hat_history])
-        self.handle[2].updatePlot(self.time_history, [self.z_dot_history, self.z_hat_dot_history])
-        self.handle[3].updatePlot(self.time_history, [self.theta_dot_history, self.theta_hat_dot_history])
+        self.handle[0].updatePlot(self.time_history, [self.x_history, self.x_hat_history])
+        self.handle[1].updatePlot(self.time_history, [self.y_history, self.y_hat_history])
+        self.handle[2].updatePlot(self.time_history, [self.x_dot_history, self.x_hat_dot_history])
+        self.handle[3].updatePlot(self.time_history, [self.y_dot_history, self.y_hat_dot_history])
 
 
 class myPlot:

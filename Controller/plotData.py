@@ -43,10 +43,10 @@ class plotData:
         self.time_history.append(t)  # time
         self.xref_history.append(reference[0])  # reference base position
         self.x_history.append(states[0])  # base position
-        self.theta_history.append(180.0/np.pi*ctrl[0][0])  # rod angle (converted to degrees)
+        self.theta_history.append(180.0/np.pi*ctrl[0])  # rod angle (converted to degrees)
         self.yref_history.append(reference[1])  # reference base position
         self.y_history.append(states[2])  # base position
-        self.phi_history.append(180.0/np.pi*ctrl[1][0])  # rod angle (converted to degrees)
+        self.phi_history.append(180.0/np.pi*ctrl[1])  # rod angle (converted to degrees)
 
         # update the plots with associated histories
         self.handle[0].updatePlot(self.time_history, [self.x_history, self.xref_history])

@@ -29,28 +29,45 @@ A = np.matrix([[0.0, 1.0, 0.0, 0.0],
                [0.0, 0.0, 0.0, 1.0],
                [0.0, 0.0, 0.0, 0.0]])
 
+Ax = np.matrix([[0.0, 1.0],
+                [0.0, 0.0]])
+
+Ay = np.matrix([[0.0, 1.0],
+                [0.0, 0.0]])
+
 B = np.matrix([[0.0, 0.0],
                [-P.g, 0.0],
                [0.0, 0.0],
-               [-P.g, 0.0]])
+               [0.0, -P.g]])
+
+Bx = np.matrix([[0.0],
+               [-P.g]])
+
+By = np.matrix([[0.0],
+               [-P.g]])
 
 C = np.matrix([[1.0, 0.0, 0.0, 0.0],
                [0.0, 0.0, 1.0, 0.0]])
 
-# form augmented system
-A1 = np.matrix([[0.0, 1.0, 0.0, 0.0, 0.0, 0.0],
-               [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
-               [0.0, 0.0, 0.0, 1.0, 0.0, 0.0],
-               [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
-               [-1.0, 0.0, 0.0, 0.0, 0.0, 0.0],
-               [0.0, -1.0, 0.0, 0.0, 0.0, 0.0]])
+Cx = np.matrix([[1.0, 0.0]])
 
-B1 = np.matrix([[0.0],
-               [0.0],
-               [P.length/(P.m2*P.length**2/3.0+P.m1*P.length**2/4.0)],
-               [0.0],
-               [0.0],
-               [0.0],
+Cy = np.matrix([[1.0, 0.0]])
+
+# form augmented system
+Ax1 = np.matrix([[0.0, 1.0, 0.0],
+               [0.0, 0.0, 0.0],
+               [-1.0, 0.0, 0.0]])
+
+Ay1 = np.matrix([[0.0, 1.0, 0.0],
+               [0.0, 0.0, 0.0],
+               [-1.0, 0.0, 0.0]])
+
+Bx1 = np.matrix([[0.0],
+               [-P.g],
+               [0.0]])
+
+By1 = np.matrix([[0.0],
+               [-P.g],
                [0.0]])
 
 # gain calculation
@@ -63,12 +80,21 @@ des_char_poly = np.convolve(
 des_poles = np.roots(des_char_poly)
 
 # Compute the gains if the system is controllable
-if np.linalg.matrix_rank(cnt.ctrb(A1, B1)) != 5:
+if np.linalg.matrix_rank(cnt.ctrb(Ax1, Bx1)) !=3:
     print("The system is not controllable")
 else:
-    K1 = cnt.acker(A1, B1, des_poles)
-    K = np.matrix([K1.item(0), K1.item(1), K1.item(2), K1.item(3)])
-    ki = K1.item(4)
+    Kx1 = cnt.acker(Ax1, Bx1, des_poles)
+    Kx = np.matrix([Kx1.item(0), Kx1.item(1)])#, K1.item(2), K1.item(3)])
+    kxi = Kx1.item(2)
+
+# Compute the gains if the system is controllable
+if np.linalg.matrix_rank(cnt.ctrb(Ay1, By1)) !=3:
+    print("The system is not controllable")
+else:
+    Ky1 = cnt.acker(Ay1, By1, des_poles)
+    Ky = np.matrix([Ky1.item(0), Ky1.item(1)])#, K1.item(2), K1.item(3)])
+    kyi = Ky1.item(2)
+
 
 # compute observer gains
 des_obs_char_poly = np.convolve([1, 2*zeta_z*wn_z_obs, wn_z_obs**2],
@@ -83,6 +109,6 @@ else:
     # .T transposes the matrix
     L = signal.place_poles(A.T, C.T, des_obs_poles).gain_matrix.T
 
-print('K: ', K)
-print('ki: ', ki)
+print('K: ', Kx, Ky)
+print('ki: ', kxi, kyi)
 print('L^T: ', L.T)
