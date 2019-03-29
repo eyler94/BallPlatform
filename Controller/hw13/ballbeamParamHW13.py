@@ -12,8 +12,8 @@ import control as cnt
 #                 State Space
 ####################################################
 # tuning parameters
-tr_z = 1.2        # rise time for position
-tr_theta = 0.5    # rise time for angle
+tr_z = 2        # rise time for z
+tr_theta = 0.625    # rise time for z_dot
 zeta_z = 0.707  # damping ratio position
 zeta_th = 0.707  # damping ratio angle
 integrator_pole = -5.0
@@ -47,11 +47,15 @@ By = np.matrix([[0.0],
                [-P.g]])
 
 C = np.matrix([[1.0, 0.0, 0.0, 0.0],
-               [0.0, 0.0, 1.0, 0.0]])
-
-Cx = np.matrix([[1.0, 0.0]])
-
-Cy = np.matrix([[1.0, 0.0]])
+               # [0.0, 1.0, 0.0, 0.0],
+               [0.0, 0.0, 1.0, 0.0]])#,
+               # [0.0, 0.0, 0.0, 1.0]])
+#
+# Cx = np.matrix([[1.0, 0.0],
+#                 [0.0, 1.0]])
+#
+# Cy = np.matrix([[1.0, 0.0],
+#                 [0.0, 1.0]])
 
 # form augmented system
 Ax1 = np.matrix([[0.0, 1.0, 0.0],

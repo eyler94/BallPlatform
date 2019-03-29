@@ -6,7 +6,7 @@ class signalGenerator:
         1 or more signals of different types: square_wave,
         sawtooth_wave, triangle_wave, random_wave.
     '''
-    def __init__(self, amplitude=1, frequency=1, y_offset=0):
+    def __init__(self, amplitude=1, frequency=1, t_offset = 0. , y_offset=0):
         '''
             amplitude - signal amplitude.  Standard deviation for random.
             frequency - signal frequency
@@ -14,10 +14,11 @@ class signalGenerator:
         '''
         self.amplitude = amplitude
         self.frequency = frequency
+        self.t_offset = -t_offset
         self.y_offset = y_offset
 
     def square(self, t):
-        if t % (1.0/self.frequency) <= 0.5/self.frequency:
+        if (t+self.t_offset) % (1.0/self.frequency) <= 0.5/self.frequency:
             out = self.amplitude + self.y_offset
         else:
             out = - self.amplitude + self.y_offset
@@ -25,7 +26,7 @@ class signalGenerator:
         #  returns a list of length 1
 
     def sawtooth(self, t):
-        tmp = t % (0.5/self.frequency)
+        tmp = (t+self.t_offset) % (0.5/self.frequency)
         out = 4*self.amplitude*self.frequency*tmp - self.amplitude + self.y_offset
         return [out]
         #  returns a list of length 1
@@ -36,21 +37,21 @@ class signalGenerator:
         #  returns a list of length 1
 
     def sin(self, t):
-        out = self.amplitude*np.sin(2*np.pi*self.frequency*t) + self.y_offset
+        out = self.amplitude*np.sin(2*np.pi*self.frequency*t+self.t_offset) + self.y_offset
         return [out]
         #  returns a list of length 1
 
     def cos(self, t):
-        out = self.amplitude*np.cos(2*np.pi*self.frequency*t) + self.y_offset
+        out = self.amplitude*np.cos(2*np.pi*self.frequency*t+self.t_offset) + self.y_offset
         return [out]
         #  returns a list of length 1
 
     def nsin(self, t):
-        out = -self.amplitude*np.sin(2*np.pi*self.frequency*t) + self.y_offset
+        out = -self.amplitude*np.sin(2*np.pi*self.frequency*t+self.t_offset) + self.y_offset
         return [out]
         #  returns a list of length 1
 
     def ncos(self, t):
-        out = -self.amplitude*np.cos(2*np.pi*self.frequency*t) + self.y_offset
+        out = -self.amplitude*np.cos(2*np.pi*self.frequency*t+self.t_offset) + self.y_offset
         return [out]
         #  returns a list of length 1

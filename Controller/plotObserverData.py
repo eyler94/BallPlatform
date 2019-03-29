@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import numpy as np
 
@@ -6,7 +6,7 @@ plt.ion()  # enable interactive drawing
 
 
 class plotObserverData:
-    ''' 
+    '''
         This class plots the time histories for the ballbeam states and state estimates.
     '''
 
@@ -47,8 +47,8 @@ class plotObserverData:
         self.x_dot_history.append(x[1])
         self.y_dot_history.append(x[3])
         self.x_hat_history.append(x_hat[0])
-        self.y_hat_history.append(x_hat[1])
-        self.x_hat_dot_history.append(x_hat[2])
+        self.y_hat_history.append(x_hat[2])
+        self.x_hat_dot_history.append(x_hat[1])
         self.y_hat_dot_history.append(x_hat[3])
 
         # update the plots with associated histories
@@ -59,7 +59,7 @@ class plotObserverData:
 
 
 class myPlot:
-    ''' 
+    '''
         Create each individual subplot.
     '''
     def __init__(self, ax,
@@ -67,12 +67,12 @@ class myPlot:
                  ylabel='',
                  title='',
                  legend=None):
-        ''' 
+        '''
             ax - This is a handle to the  axes of the figure
             xlable - Label of the x-axis
             ylable - Label of the y-axis
             title - Plot title
-            legend - A tuple of strings that identify the data. 
+            legend - A tuple of strings that identify the data.
                      EX: ("data1","data2", ... , "dataN")
         '''
         self.legend = legend
@@ -96,12 +96,12 @@ class myPlot:
         self.ax.grid(True)
 
         # Keeps track of initialization
-        self.init = True   
+        self.init = True
 
     def updatePlot(self, time, data):
-        ''' 
-            Adds data to the plot.  
-            time is a list, 
+        '''
+            Adds data to the plot.
+            time is a list,
             data is a list of lists, each list corresponding to a line on the plot
         '''
         if self.init == True:  # Initialize the plot the first time routine is called
@@ -126,5 +126,3 @@ class myPlot:
         # Adjusts the axis to fit all of the data
         self.ax.relim()
         self.ax.autoscale()
-           
-

@@ -3,6 +3,7 @@ int Delay_time = 1000;
 
 void setup() {
   Serial.begin(9600); // opens serial port, sets data rate to 9600 bps
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop() {
@@ -11,9 +12,6 @@ void loop() {
     // read the incoming byte:
     incomingstring = Serial.readString();
     delay(incomingstring.toInt());
-    // say what you got:
-//    Serial.print("I received: ");
-//    Serial.println(incomingByte, DEC);
   }
   digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
   delay(incomingstring.toInt());                       // wait for a second

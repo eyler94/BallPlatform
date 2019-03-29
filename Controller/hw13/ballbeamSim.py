@@ -10,11 +10,20 @@ from plotData import plotData
 from plotObserverData import plotObserverData
 from ballbeamTopAnimation import ballbeamTopAnimation
 
+# Arduino Serial libraries
+from serial import Serial
+from time import sleep
+
+port = "/dev/ttyUSB0"
+sleep(1)
+ser = Serial(port,9600)
+sleep(2)
+
 # instantiate ballbeam, controller, and reference classes
 ballbeam = ballbeamDynamics()
 ctrl = ballbeamController()
-x_reference = signalGenerator(amplitude=0.001, frequency=0.02)
-y_reference = signalGenerator(amplitude=0., frequency=0.02)
+x_reference = signalGenerator(amplitude=0.1, frequency=0.2)
+y_reference = signalGenerator(amplitude=0.1, frequency=0.2)
 
 # instantiate the simulation plots and animation
 dataPlot = plotData()
@@ -36,7 +45,14 @@ while t < P.t_end:  # main simulation loop
         t = t + P.Ts  # advance time by Ts
     # update animation and data plots
     x_animation.drawBallbeam(ballbeam.states(), 0, u[0])
+    Theta = int((u[0]+90)/180*1000+1000)
+    print("Theta:",Theta)
     y_animation.drawBallbeam(ballbeam.states(), 2, u[1])
+    Phi = int((u[1]+90)/180*1000+1000)
+    print("Phi:",Phi)
+    Angles = str(Theta)+str(Phi)
+    print(Angles)
+    ser.write(b'12001200')
     top_animation.drawBallbeamTop(ballbeam.states())
     input_ref = [x_reference.square(t), y_reference.square(t)]
     dataPlot.updatePlots(t, input_ref, ballbeam.states(), u)

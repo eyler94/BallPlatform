@@ -3,9 +3,9 @@ import numpy as np
 # import control as cnt
 
 # Physical parameters of the  ballbeam known to the controller
-m1 = 0.35  # Mass of the ball, kg
-m2 = 2  # mass of beam, kg
-length = 0.5  # length of beam, m
+m1 = 0.0027  # Mass of the ball, kg
+# m2 = 2  # mass of beam, kg
+length = 0.229  # length of beam, m
 g = 9.81  # gravity at sea level, m/s^2
 
 # parameters for animation
@@ -34,7 +34,3 @@ Phmax = 30.*np.pi/180.
 # dirty derivative parameters
 sigma = 0.05  # cutoff freq for dirty derivative
 beta = (2.0*sigma-Ts)/(2.0*sigma+Ts)  # dirty derivative gain
-
-# equilibrium force when ball is in center of beam
-ze = length/2.0
-Fe = m1*g*x0/length + m2*g/2.0
