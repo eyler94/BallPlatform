@@ -28,8 +28,8 @@ if Hardware:
 # instantiate ballbeam, controller, and reference classes
 ballbeam = ballbeamDynamics()
 ctrl = ballbeamController()
-x_reference = signalGenerator(amplitude=0.05, frequency=0.3)
-y_reference = signalGenerator(amplitude=0.05, frequency=0.3,t_offset=True)
+x_reference = signalGenerator(amplitude=0.05, frequency=0.275)
+y_reference = signalGenerator(amplitude=0.05, frequency=0.275,t_offset=True)
 
 # instantiate the simulation plots and animation
 dataPlot = plotData()
