@@ -27,7 +27,7 @@ class ballbeamDynamics:
         # is run.
         alpha = 0.#2  # Uncertainty parameter
         self.m1 = P.m1 * (1+2*alpha*np.random.rand()-alpha)
-        self.length = P.length * (1+2*alpha*np.random.rand()-alpha)
+        self.radius = P.radius * (1+2*alpha*np.random.rand()-alpha)
         self.g = P.g  # the gravity constant is well known and so we don't change it.
 
     def propagateDynamics(self, u):

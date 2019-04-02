@@ -5,11 +5,11 @@ import numpy as np
 # Physical parameters of the  ballbeam known to the controller
 m1 = 0.0027  # Mass of the ball, kg
 # m2 = 2  # mass of beam, kg
-length = 0.229  # length of beam, m
+platform = 0.1016  # length of beam, m
 g = 9.81  # gravity at sea level, m/s^2
 
 # parameters for animation
-radius = 0.05  # radius of ball
+radius = 0.02  # radius of ball
 
 # Initial Conditions
 x0 = 0.0  # initial ball position,m

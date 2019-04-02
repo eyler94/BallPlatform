@@ -6,7 +6,7 @@ class signalGenerator:
         1 or more signals of different types: square_wave,
         sawtooth_wave, triangle_wave, random_wave.
     '''
-    def __init__(self, amplitude=1, frequency=1, t_offset = 0. , y_offset=0):
+    def __init__(self, amplitude=1, frequency=1, t_offset = False , y_offset=0):
         '''
             amplitude - signal amplitude.  Standard deviation for random.
             frequency - signal frequency
@@ -16,6 +16,8 @@ class signalGenerator:
         self.frequency = frequency
         self.t_offset = -t_offset
         self.y_offset = y_offset
+        if t_offset:
+            self.t_offset = 1/(self.frequency*4)
 
     def square(self, t):
         if (t+self.t_offset) % (1.0/self.frequency) <= 0.5/self.frequency:

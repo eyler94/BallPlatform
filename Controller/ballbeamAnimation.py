@@ -15,8 +15,8 @@ class ballbeamAnimation:
                                               # be used to contain handles to the
                                               # patches and line objects.
         self.title = title
-        plt.axis([-P.length-P.length/5, P.length+P.length/5, -0.1, P.length]) # Change the x,y axis limits
-        plt.plot([0.0, P.length], [0.0, 0.0], 'k')    # Draw a base line
+        plt.axis([-P.platform-P.platform/5, P.platform+P.platform/5, -0.1, P.platform]) # Change the x,y axis limits
+        plt.plot([0.0, P.platform], [0.0, 0.0], 'k')    # Draw a base line
         self.fig.suptitle(self.title)
         plt.xlabel('z')
 
@@ -36,8 +36,8 @@ class ballbeamAnimation:
             self.flagInit = False
 
     def drawBall(self, z, theta):
-        x = z*np.cos(theta) - P.radius*np.sin(theta)
-        y = z*np.sin(theta) + P.radius*np.cos(theta)
+        x = z*np.cos(theta) - P.platform*np.sin(theta)
+        y = z*np.sin(theta) + P.platform*np.cos(theta)
         xy = (x, y)  # Center of circle
 
         # When the class is initialized, a CirclePolygon patch object will
@@ -54,8 +54,8 @@ class ballbeamAnimation:
             self.handle[0]._xy = xy
 
     def drawBeam(self, theta):
-        X = [-P.length*np.cos(theta), P.length*np.cos(theta)]  # X data points
-        Y = [-P.length*np.sin(theta), P.length*np.sin(theta)]  # Y data points
+        X = [-P.platform*np.cos(theta), P.platform*np.cos(theta)]  # X data points
+        Y = [-P.platform*np.sin(theta), P.platform*np.sin(theta)]  # Y data points
 
         # When the class is initialized, a line object will be
         # created and added to the axes. After initialization, the
