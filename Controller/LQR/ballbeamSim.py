@@ -14,8 +14,8 @@ from plotData import plotData
 from plotObserverData import plotObserverData
 from ballbeamTopAnimation import ballbeamTopAnimation
 
-Hardware = False
-# Hardware = True
+# Hardware = False
+Hardware = True
 if Hardware:
     # Arduino Serial libraries
     from serial import Serial
@@ -25,11 +25,18 @@ if Hardware:
     ser = Serial(port,19200)
     sleep(2)
 
+Camera = False
+# Camera = True
+if Camera:
+    from BallPosition import BallPosition
+    BP = BallPosition()
+    center = BP.Position("green")
+
 # instantiate ballbeam, controller, and reference classes
 ballbeam = ballbeamDynamics()
 ctrl = ballbeamController()
 x_reference = signalGenerator(amplitude=0.05, frequency=0.275)
-y_reference = signalGenerator(amplitude=0.05, frequency=0.275,t_offset=True)
+y_reference = signalGenerator(amplitude=0., frequency=0.275,t_offset=True)
 
 # instantiate the simulation plots and animation
 dataPlot = plotData()
@@ -59,7 +66,10 @@ while t < P.t_end:  # main simulation loop
     while t < t_next_plot: # updates control and dynamics at faster simulation rate
 
         state_r = np.array([[x_ref[0], y_ref[0]]]).T
-        xy = ballbeam.outputs()
+        if Camera:
+            xy = BP.Position("orange")
+        else:
+            xy = ballbeam.outputs()
         u = ctrl.u(state_r,xy)
         ballbeam.propagateDynamics(u)#input)  # Propagate the dynamics
         t = t + P.Ts  # advance time by Ts
@@ -67,8 +77,8 @@ while t < P.t_end:  # main simulation loop
         ## Serial stuff
         if Hardware:
             # ser.flush()
-            mult = 1000.
-            com = str(int((u[0]*mult+90.)/180.*1000.+1000)) + "," + str(int((u[1]*mult+90.)/180.*1000.+1000)) + "\n"
+            mult = 100#30.
+            com = str(int((u[0]*mult+90.)/180.*(575.*2.)+1000)) + "," + str(int((-u[1]*mult+90.)/180.*(415.*2.)+1000)) + "\n"
             ser.write(com.encode())
             print(com)
             # print(t)
@@ -84,6 +94,9 @@ while t < P.t_end:  # main simulation loop
     dataPlot.updatePlots(t, input_ref, ballbeam.states(), u)
     # observerPlot.updatePlots(t, ballbeam.states(), ctrl.z_hat)
     plt.pause(0.001)  # the pause causes the figure to be displayed during the simulation
+
+if Camera:
+    BP.shutdown()
 
 # Keeps the program from closing until the user presses a button.
 print('Press key to close')

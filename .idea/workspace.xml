@@ -2,27 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54378439-9358-446a-9f99-0c7b32d3f394" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ArduinoSide/JohanOrig.ino" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ArduinoSide/Johann/JohanOrig.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ArduinoSide/Johann/Johann.ino" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ArduinoSide/Johann/Serialwrite.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/ObserverIntegrator/ballbeamController.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/ObserverIntegrator/ballbeamParamHW13.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/ObserverIntegrator/ballbeamSim.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/ObserverIntegrator/ballbeamSimDiscrete.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JohanOrig.ino" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ArduinoSide/Faster/Faster.ino" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ArduinoSide/SerialServo/SerialServo.ino" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ArduinoSide/Serialwrite.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/SStesting.mlx" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/SStesting.mlx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/ballbeamParam.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/ballbeamParam.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/hw13/ballbeamController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/LQR/ballbeamController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/hw13/ballbeamParamHW13.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/LQR/ballbeamParamHW13.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/hw13/ballbeamSim.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/LQR/ballbeamSim.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/hw13/ballbeamSimDiscrete.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/LQR/ballbeamSimDiscrete.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gimbal.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/ArduinoSide/gimbal.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gimbal.svg" beforeDir="false" afterPath="$PROJECT_DIR$/ArduinoSide/gimbal.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/ObserverIntegrator/ballbeamSim.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/ObserverIntegrator/ballbeamSim.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +16,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controller/LQR/ballbeamController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-54">
+            <state>
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -43,18 +24,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Controller/LQR/ballbeamSim.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-378" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Controller/ObserverIntegrator/ballbeamSim.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="43" column="12" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
+            <state>
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -78,10 +54,11 @@
         <option value="$PROJECT_DIR$/Controller/ballbeamParam.py" />
         <option value="$PROJECT_DIR$/Controller/hw13/ballbeamSim.py" />
         <option value="$PROJECT_DIR$/Controller/ObserverIntegrator/ballbeamSim.py" />
+        <option value="$PROJECT_DIR$/Controller/LQR/ballbeamSim.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="27" />
     <option name="width" value="960" />
     <option name="height" value="1053" />
@@ -91,6 +68,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -119,7 +97,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -272,12 +249,12 @@
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1735232" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1735232" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32894737" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32894737" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.30701753" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -341,17 +318,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/hw13/ballbeamController.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="69" column="18" selection-start-line="69" selection-start-column="18" selection-end-line="69" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#219#1397#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/hw13/ballbeamController.py" />
     <entry file="file://$PROJECT_DIR$/Controller/signalGenerator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -369,37 +336,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/ballbeamDynamics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/hw13/ballbeamParamHW13.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ArduinoSide/Serialwrite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="8" lean-forward="true" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#6#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/hw13/ballbeamSim.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="43" column="12" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/ballbeamDynamics.py" />
+    <entry file="file://$PROJECT_DIR$/Controller/hw13/ballbeamParamHW13.py" />
+    <entry file="file://$PROJECT_DIR$/ArduinoSide/Serialwrite.py" />
+    <entry file="file://$PROJECT_DIR$/Controller/hw13/ballbeamSim.py" />
     <entry file="file://$PROJECT_DIR$/Controller/ballbeamParam.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -416,9 +356,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/ObserverIntegrator/ballbeamSim.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="36" column="50" lean-forward="true" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Controller/LQR/ballbeamController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-54">
+        <state>
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -427,13 +374,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller/LQR/ballbeamSim.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-378" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/ObserverIntegrator/ballbeamSim.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="43" column="12" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
+        <state>
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

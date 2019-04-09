@@ -28,17 +28,24 @@ args = vars(ap.parse_args())
 # list of tracked points
 
 
-# # Green ball (H: 0 - 180, S: 0 - 255, V: 0 - 255)
-# Lower = (29, 86, 6)
-# Upper = (64, 255, 255)
-
-# Orange pingpong ball
-Lower = (0, 119, 177)
-Upper = (15, 255, 255)
+# Green ball (H: 0 - 180, S: 0 - 255, V: 0 - 255)
+Lower = (29, 86, 6)
+Upper = (64, 255, 255)
+#
+# # Orange pingpong ball
+# Lower = (0, 91, 132)
+# Upper = (15, 255, 255)
 
 # # White ball
-# Lower = (0, 0, 60)
-# Upper = (360, 0, 100)
+# # Lower = (0, 0, 84)
+# # Upper = (14, 3, 140)
+# Lower = (0, 0, 130)
+# Upper = (0, 0, 255)
+
+# # Blue ball
+# Lower = (36, 40, 0)
+# Upper = (100, 255, 255)
+
 
 pts = deque(maxlen=args["buffer"])
 

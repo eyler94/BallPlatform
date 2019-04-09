@@ -3,8 +3,8 @@
 Servo Pitch;
 Servo Roll;
 
-float theta = 1500;
-float phi = 1500;
+float theta = 1575;
+float phi = 1415;
 
 void setup() {
   Serial.begin(19200); // opens serial port, sets data rate to 9600 bps
@@ -12,8 +12,8 @@ void setup() {
   Pitch.attach(3);
   Roll.attach(5);
   delay(1000);
-  Pitch.writeMicroseconds(1500);
-  Roll.writeMicroseconds(1500);
+  Pitch.writeMicroseconds(1575);
+  Roll.writeMicroseconds(1415);
 }
 
 void loop() {
