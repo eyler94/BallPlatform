@@ -2,10 +2,12 @@ import numpy as np
 import ballbeamParam as P
 import scipy.linalg
 
-import pandas as pd
-pd.set_option('display.width', 320)
-pd.set_option('display.max_columns', 12)
-np.set_printoptions(linewidth=320)
+print = True
+if print:
+    import pandas as pd
+    pd.set_option('display.width', 320)
+    pd.set_option('display.max_columns', 12)
+    np.set_printoptions(linewidth=320)
 
 def lqr(A,B,Q,R):
     X = np.matrix(scipy.linalg.solve_continuous_are(A,B,Q,R))
@@ -16,6 +18,8 @@ def lqr(A,B,Q,R):
 class ballbeamController:
     # state feedback control using dirty derivatives to estimate zdot and thetadot
     def __init__(self,x0,y0):
+
+        ###Determine K and Ki
         A = np.array([[0., 1., 0., 0.],
                       [0., 0., 0., 0.],
                       [0., 0., 0., 1.],
@@ -34,10 +38,10 @@ class ballbeamController:
         Baug = np.vstack((B,np.zeros((2,2))))
 
         xmax = 0.1016
-        xdotmax = 0.1016
+        xdotmax = 1
         xIntmax = 1.
         ymax = 0.1016
-        ydotmax = 0.1016
+        ydotmax = 1
         yIntmax = 1.
         Q = np.diagflat([[1./xmax**2, 1./xdotmax**2],[1./ymax**2, 1./ydotmax**2],[1./xIntmax**2, 1./yIntmax**2]])
 
@@ -48,94 +52,81 @@ class ballbeamController:
 
         Kall = np.asarray(lqr(Aaug,Baug,Q,R))
         self.K = Kall[:,:4]#np.array([[-1.342, -0.5392, 0., 0.],[0., 0., -1.342, -0.5392]])
-        self.Ki = Kall[:,4:]
         self.Kr = -np.linalg.pinv(Caug@np.linalg.pinv(Aaug-Baug@Kall)@Baug)
 
-        self.x = x0
-        self.x_d1 = x0
-        self.x_dot = 0.
+        self.state = np.array([[x0, 0., y0, 0.]]).T
+        self.state_d1 = np.array([[x0, 0., y0, 0.]]).T
+        self.first = True
+        self.length=10
+        self.state_Array = np.ones((2,self.length))
 
-        self.y = y0
-        self.y_d1 = y0
-        self.y_dot = 0.
+        ### Integration stuff
+        self.Ki = np.ones((2,2))*0.00001#Kall[:,4:]
+        self.int_error = np.zeros((2,1))
+        self.error_d1 = np.zeros((2,1))
 
-        self.state_hat = np.array([[self.x, self.x_dot, self.y, self.y_dot]]).T
+        ### Saturation protection
+        self.Ts = P.Ts
         self.limit = np.pi/6
 
-        ##integrator stuff
-        self.Th_d1 = 0.0  # Computed Angle, delayed by one sample
-        self.Ph_d1 = 0.0
-        self.integrator_x = 0.0        # integrator
-        self.integrator_y = 0.0        # integrator
-        self.error_x_d1 = 0.0          # error signal delayed by 1 sample
-        self.error_y_d1 = 0.0          # error signal delayed by 1 sample
-        self.kxi = 0.#5            # Integral gain
-        self.kyi = 0.#5             # Integral gain
-
-        ##Derivative stuff
-        length=10
-        self.xArray = np.ones((1,length))
-        self.yArray = np.ones((1,length))
-        self.first = True
-
-    def u(self, state_r, state_c):
-        self.x = state_c[0]
-        self.y = state_c[1]
+    def u(self, req, cur):
+        self.state[0,0]=cur[0]
+        self.state[2,0]=cur[1]
         self.derivatives()
 
-        #integrate error
-        error_x = state_r[0] - self.x
-        error_y = state_r[1] - self.y
-        self.integrateError(error_x, error_y)
+        error = req-cur
 
-        state_hat = np.array([[self.x, self.x_dot, self.y, self.y_dot]]).T
-        u = -state_r-self.K@state_hat
-        theta_unsat = u[0] - self.kxi*self.integrator_x
-        phi_unsat = u[1] - self.kyi*self.integrator_y
-        theta = self.saturate(theta_unsat,self.limit)
-        phi = self.saturate(phi_unsat,self.limit)
-        self.integrator_x_AntiWindup(theta, theta_unsat)
-        self.integrator_y_AntiWindup(phi, phi_unsat)
-        u[0] = theta
-        u[1] = phi
-        return u
+        deriv_lim = 0.2
+        if self.state[1,0] <= deriv_lim:
+            self.integrateError(error, 0)
+        if self.state[3,0] <= deriv_lim:
+            self.integrateError(error, 1)
+
+        u_unsat = self.Kr@req-self.K@self.state+self.Ki@self.int_error
+        # u_unsat = -req- self.K@self.state-self.Ki@self.int_error
+
+        u_sat = self.saturate(u_unsat)
+
+        self.integratorAntiWindup(u_sat,u_unsat)
+
+        # u = np.ones((2,1))*0.000000001
+        return u_sat
 
     def derivatives(self):
+        # print("state",self.state,"\nprev state:",self.state_d1)
         if self.first:
-            self.xArray = self.xArray*self.x
-            self.yArray = self.yArray*self.y
+            self.state_Array[0,:] = self.state_Array[0,:]*self.state[0,0]
+            self.state_Array[1,:] = self.state_Array[1,:]*self.state[2,0]
             self.first = False
         else:
-            for i in range(9,0,-1):
-                self.xArray[0][i]=self.xArray[0][i-1]
-                self.yArray[0][i]=self.yArray[0][i-1]
-            self.xArray[0][0]=self.x
-            self.yArray[0][0]=self.y
-        self.x = np.average(self.xArray)
-        self.y = np.average(self.yArray)
+            for i in range(self.length-1,0,-1):
+                self.state_Array[0][i]=self.state_Array[0][i-1]
+                self.state_Array[1][i]=self.state_Array[1][i-1]
+            self.state_Array[0][0]=self.state[0,0]
+            self.state_Array[1][0]=self.state[2,0]
+        self.state[0,0] = np.average(self.state_Array[0,:])
+        self.state[2,0] = np.average(self.state_Array[1,:])
 
-        self.x_dot = (self.x-self.x_d1)/P.Ts
-        self.x_d1 = self.x
-        self.y_dot = (self.y-self.y_d1)/P.Ts
-        self.y_d1 = self.y
+        self.state[1,0] = (self.state[0,0]-self.state_d1[0,0])/self.Ts
+        self.state_d1[0,0] = self.state[0,0]
+        self.state[3,0] = (self.state[2,0]-self.state_d1[2,0])/self.Ts
+        self.state_d1[2,0] = self.state[2,0]
+        # print("state",self.state,"\nprev state:",self.state_d1,"\nstate Array:",self.state_Array)
 
-    def integrator_x_AntiWindup(self, Theta, Theta_unsat):
-        # integrator anti - windup
-        if self.kxi != 0.0:
-            self.integrator_x = self.integrator_x + P.Ts/self.kxi*(Theta-Theta_unsat)
+    def integrateError(self, error, spot):
+        self.int_error[spot,0] = self.int_error[spot,0] + (self.Ts/2.0)*(error[spot,0] + self.error_d1[spot,0])
+        self.error_d1[spot,0] = error[spot,0]
 
-    def integrator_y_AntiWindup(self, Phi, Phi_unsat):
-        # integrator anti - windup
-        if self.kyi != 0.0:
-            self.integrator_y = self.integrator_y + P.Ts/self.kyi*(Phi-Phi_unsat)
+    def saturate(self, u_unsat):
+        u_sat = np.zeros((2,1))
+        for spot in range(0,2):
+            if u_unsat.item(spot) >= self.limit:
+                u_sat[spot][0] = self.limit
+            elif u_unsat.item(spot) <= -self.limit:
+                u_sat[spot][0] = -self.limit
+            else:
+                u_sat[spot][0] = u_unsat.item(spot)
+        return u_sat
 
-    def integrateError(self, error_x, error_y):
-        self.integrator_x = self.integrator_x + (P.Ts/2.0)*(error_x + self.error_x_d1)
-        self.integrator_y = self.integrator_y + (P.Ts/2.0)*(error_y + self.error_y_d1)
-        self.error_x_d1 = error_x
-        self.error_y_d1 = error_y
-
-    def saturate(self,u,limit):
-        if abs(u) > limit:
-            u = limit*np.sign(u)
-        return u
+    def integratorAntiWindup(self, u_sat, u_unsat):
+        self.int_error = self.int_error + self.Ts/self.Ki*(u_sat-u_unsat)
