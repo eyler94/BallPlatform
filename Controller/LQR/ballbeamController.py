@@ -2,8 +2,8 @@ import numpy as np
 import ballbeamParam as P
 import scipy.linalg
 
-print = True
-if print:
+printWide = True
+if printWide:
     import pandas as pd
     pd.set_option('display.width', 320)
     pd.set_option('display.max_columns', 12)
@@ -38,11 +38,11 @@ class ballbeamController:
         Baug = np.vstack((B,np.zeros((2,2))))
 
         xmax = 0.1016
-        xdotmax = 1
-        xIntmax = 1.
+        xdotmax = 1.
+        xIntmax = 0.05
         ymax = 0.1016
-        ydotmax = 1
-        yIntmax = 1.
+        ydotmax = 1.
+        yIntmax = 0.05
         Q = np.diagflat([[1./xmax**2, 1./xdotmax**2],[1./ymax**2, 1./ydotmax**2],[1./xIntmax**2, 1./yIntmax**2]])
 
         R = np.eye(2)
@@ -61,7 +61,8 @@ class ballbeamController:
         self.state_Array = np.ones((2,self.length))
 
         ### Integration stuff
-        self.Ki = np.ones((2,2))*0.00001#Kall[:,4:]
+        self.Ki = Kall[:,4:]
+        self.error_state = np.zeros((2,1))
         self.int_error = np.zeros((2,1))
         self.error_d1 = np.zeros((2,1))
 
@@ -70,24 +71,25 @@ class ballbeamController:
         self.limit = np.pi/6
 
     def u(self, req, cur):
-        self.state[0,0]=cur[0]
-        self.state[2,0]=cur[1]
+        self.state[0,0]=cur[0,0]
+        self.state[2,0]=cur[1,0]
         self.derivatives()
 
-        error = req-cur
+        self.error_state = req-cur
 
         deriv_lim = 0.2
         if self.state[1,0] <= deriv_lim:
-            self.integrateError(error, 0)
+            self.integrateError(self.error_state, 0)
         if self.state[3,0] <= deriv_lim:
-            self.integrateError(error, 1)
+            self.integrateError(self.error_state, 1)
+        # print("error:",self.error_state,"\nIntEr:",self.int_error)
 
-        u_unsat = self.Kr@req-self.K@self.state+self.Ki@self.int_error
-        # u_unsat = -req- self.K@self.state-self.Ki@self.int_error
+        # u_unsat = self.Kr@req-self.K@self.state-self.Ki@self.int_error
+        u_unsat = -req-self.K@self.state-self.Ki@self.int_error
 
         u_sat = self.saturate(u_unsat)
 
-        self.integratorAntiWindup(u_sat,u_unsat)
+        # self.integratorAntiWindup(u_sat,u_unsat)
 
         # u = np.ones((2,1))*0.000000001
         return u_sat
@@ -113,9 +115,9 @@ class ballbeamController:
         self.state_d1[2,0] = self.state[2,0]
         # print("state",self.state,"\nprev state:",self.state_d1,"\nstate Array:",self.state_Array)
 
-    def integrateError(self, error, spot):
-        self.int_error[spot,0] = self.int_error[spot,0] + (self.Ts/2.0)*(error[spot,0] + self.error_d1[spot,0])
-        self.error_d1[spot,0] = error[spot,0]
+    def integrateError(self, error,spot):
+        self.int_error[spot][0] = self.int_error[spot][0] + (self.Ts/2.)*(error[spot][0] + self.error_d1[spot][0])
+        self.error_d1[spot][0] = error[spot][0]
 
     def saturate(self, u_unsat):
         u_sat = np.zeros((2,1))

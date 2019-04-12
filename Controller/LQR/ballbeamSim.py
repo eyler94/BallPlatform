@@ -13,8 +13,8 @@ from plotData import plotData
 from plotObserverData import plotObserverData
 from ballbeamTopAnimation import ballbeamTopAnimation
 
-Hardware = False
-# Hardware = True
+# Hardware = False
+Hardware = True
 if Hardware:
     # Arduino Serial libraries
     from serial import Serial
@@ -30,7 +30,7 @@ if Camera:
     from BallPosition import BallPosition
     BP = BallPosition()
     center = BP.Position("green")
-    xy = BP.Position("orange")
+    xy = np.asarray(BP.Position("orange"))
     ctrl = ballbeamController(xy[0],xy[1])
 else:
     ctrl = ballbeamController(P.x0,P.y0)
@@ -75,10 +75,14 @@ while t < P.t_end:  # main simulation loop
 
         state_r = np.array([[x_ref[0], y_ref[0]]]).T
         if Camera:
-            xy = BP.Position("orange")
+            point = BP.Position("orange")
+            xy = np.array([[point[0],point[1]]]).T
             print(xy)
         else:
-            xy = ballbeam.outputs()
+            point = ballbeam.outputs()
+            xy = np.array([[point[0],point[1]]]).T
+
+        print("req",state_r,"\nxy",xy)
         u = ctrl.u(state_r,xy)
         ballbeam.propagateDynamics(u)#input)  # Propagate the dynamics
         t = t + P.Ts  # advance time by Ts
