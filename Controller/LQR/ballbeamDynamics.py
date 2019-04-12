@@ -73,10 +73,10 @@ class ballbeamDynamics:
             [z, theta] with added Gaussian noise
         '''
         # re-label states for readability
-        x = self.state.item(0)
-        xdot = self.state.item(1)
-        y = self.state.item(2)
-        ydot = self.state.item(3)
+        x = self.state.item(0)+np.random.randn()*0.00001
+        xdot = self.state.item(1)+np.random.randn()*0.00001
+        y = self.state.item(2)+np.random.randn()*0.00001
+        ydot = self.state.item(3)+np.random.randn()*0.00001
         # theta = self.state.item(1)
         # # add Gaussian noise to outputs
         # z_m = z + random.gauss(0, 0.001)

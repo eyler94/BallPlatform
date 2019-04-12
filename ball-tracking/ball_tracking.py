@@ -1,8 +1,8 @@
 # USAGE
 # python3 ball_tracking.py --video ball_tracking_example.mp4
 # python3 ball_tracking.py
-# python3 ball_tracking.py -c #camera number
-
+# python3 ball_tracking.py -w #webcam number
+# python3 ball_tracking.py -c #color of the object: green, orange, white.
 
 # import the necessary packages
 from collections import deque
@@ -19,28 +19,33 @@ ap.add_argument("-v", "--video",
 	help="path to the (optional) video file")
 ap.add_argument("-b", "--buffer", type=int, default=64,
 	help="max buffer size")
-ap.add_argument("-c", "--camera", type=int, default=0,
-	help="camera selection. 0 or blank is internal.")
+ap.add_argument("-w", "--webcam", type=int, default=0,
+	help="webcam selection. 0 or blank is internal.")
+ap.add_argument("-c", "--color",  default="orange",
+	help="Color selection. Orange is default.")
 args = vars(ap.parse_args())
+
 
 # define the lower and upper boundaries of the "green"
 # ball in the HSV color space, then initialize the
 # list of tracked points
 
+color = args["color"]
 
-# Green ball (H: 0 - 180, S: 0 - 255, V: 0 - 255)
-Lower = (29, 86, 6)
-Upper = (64, 255, 255)
-#
-# # Orange pingpong ball
-# Lower = (0, 91, 132)
-# Upper = (15, 255, 255)
-
-# # White ball
-# # Lower = (0, 0, 84)
-# # Upper = (14, 3, 140)
-# Lower = (0, 0, 130)
-# Upper = (0, 0, 255)
+if color == "green":
+	# Green ball (H: 0 - 180, S: 0 - 255, V: 0 - 255)
+	Lower = (29, 86, 6)
+	Upper = (64, 255, 255)
+elif color == "orange":
+	# Orange pingpong ball
+	Lower = (0, 91, 132)
+	Upper = (15, 255, 255)
+elif color == "white":
+	# White ball
+	# Lower = (0, 0, 84)
+	# Upper = (14, 3, 140)
+	Lower = (0, 0, 130)
+	Upper = (0, 0, 255)
 
 # # Blue ball
 # Lower = (36, 40, 0)
@@ -52,16 +57,16 @@ pts = deque(maxlen=args["buffer"])
 # if a video path was not supplied, grab the reference
 # to the webcam
 if not args.get("video", False):
-    #if not args.get("camera", False):
+    #if not args.get("webcam", False):
     #	vs = VideoStream(src=0).start()
     #else:
-    vs = VideoStream(src=args["camera"]).start()
+    vs = VideoStream(src=args["webcam"]).start()
 
 # otherwise, grab a reference to the video file
 else:
 	vs = cv2.VideoCapture(args["video"])
 
-# allow the camera or video file to warm up
+# allow the webcam or video file to warm up
 time.sleep(2.0)
 
 # keep looping
@@ -139,11 +144,11 @@ while True:
 	if key == ord("q"):
 		break
 
-# if we are not using a video file, stop the camera video stream
+# if we are not using a video file, stop the webcam video stream
 if not args.get("video", False):
 	vs.stop()
 
-# otherwise, release the camera
+# otherwise, release the webcam
 else:
 	vs.release()
 

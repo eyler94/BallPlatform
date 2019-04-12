@@ -40,6 +40,7 @@ class BallPosition:
             print("Please specify color")
             return position
 
+        pts = deque(maxlen=64)
 
         frame = self.vs.read()
 
@@ -94,8 +95,8 @@ class BallPosition:
         if color == "green":
             self.Center = center
         elif color == "orange":
-            x = (self.Center[0]-center[0])*self.length/self.LtR
-            y = (self.Center[1]-center[1])*self.length/self.BtT
+            x = round((self.Center[0]-center[0])*self.length/self.LtR,4)
+            y = round((self.Center[1]-center[1])*self.length/self.BtT,4)
             center = (x,y)
         return center
 
