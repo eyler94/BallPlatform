@@ -12,8 +12,6 @@ void setup() {
   Pitch.attach(3);
   Roll.attach(5);
   delay(1000);
-  Pitch.writeMicroseconds(1575);
-  Roll.writeMicroseconds(1415);
 }
 
 void loop() {

@@ -24,8 +24,8 @@ if Hardware:
     ser = Serial(port,19200)
     sleep(4)
 
-Camera = False
-# Camera = True
+# Camera = False
+Camera = True
 if Camera:
     from BallPosition import BallPosition
     BP = BallPosition()
@@ -90,8 +90,8 @@ while t < P.t_end:  # main simulation loop
         ## Serial stuff
         if Hardware:
             # ser.flush()
-            mult = 30.
-            com = str(int((-u[0]*mult+90.)/180.*(547.*2.)+1000)) + "," + str(int((-u[1]*mult+90.)/180.*(415.*2.)+1000)) + "\n"
+            mult = 15.
+            com = str(int((-u[0]*mult+90.)/180.*(590.*2.)+1000)) + "," + str(int((-u[1]*mult+90.)/180.*(430.*2.)+1000)) + "\n"
             ser.write(com.encode())
             print(com)
             # print(t)

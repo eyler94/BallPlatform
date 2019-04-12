@@ -25,7 +25,7 @@ class ballbeamTopAnimation:
         # drawCart, drawCircle, and drawRod to create the animation.
     def drawBallbeamTop(self, u):
         # Process inputs to function
-        x = u[0]        # Horizontal position of cart, m
+        x = -u[0]        # Horizontal position of cart, m
         y = u[2]
 
         self.drawBall(x,y)
