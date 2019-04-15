@@ -37,16 +37,19 @@ class ballbeamController:
         Aaug = np.vstack((Atemp,-Caug))
         Baug = np.vstack((B,np.zeros((2,2))))
 
-        xmax = 0.1016
-        xdotmax = 1.
-        xIntmax = 0.05
-        ymax = 0.1016
-        ydotmax = 1.
-        yIntmax = 0.05
+        distMax = 0.00051016
+        dotMax = 1.
+        IntMax = 0.5
+        xmax = distMax
+        xdotmax = dotMax
+        xIntmax = IntMax
+        ymax = distMax
+        ydotmax = dotMax
+        yIntmax = IntMax
         Q = np.diagflat([[1./xmax**2, 1./xdotmax**2],[1./ymax**2, 1./ydotmax**2],[1./xIntmax**2, 1./yIntmax**2]])
 
         R = np.eye(2)
-        max_u = np.pi/24.
+        max_u = 0.05
         R[0,0] = 1./(max_u)**2
         R[1,1] = 1./(max_u)**2
 
@@ -57,7 +60,7 @@ class ballbeamController:
         self.state = np.array([[x0, 0., y0, 0.]]).T
         self.state_d1 = np.array([[x0, 0., y0, 0.]]).T
         self.first = True
-        self.length=10
+        self.length=2
         self.state_Array = np.ones((2,self.length))
 
         ### Integration stuff
@@ -68,7 +71,7 @@ class ballbeamController:
 
         ### Saturation protection
         self.Ts = P.Ts
-        self.limit = np.pi/6
+        self.limit = np.pi
 
     def u(self, req, cur):
         self.state[0,0]=cur[0,0]
@@ -85,7 +88,7 @@ class ballbeamController:
         # print("error:",self.error_state,"\nIntEr:",self.int_error)
 
         # u_unsat = self.Kr@req-self.K@self.state-self.Ki@self.int_error
-        u_unsat = -self.K@self.state-self.Ki@self.int_error
+        u_unsat = -req-self.K@self.state-self.Ki@self.int_error
 
         u_sat = self.saturate(u_unsat)
 

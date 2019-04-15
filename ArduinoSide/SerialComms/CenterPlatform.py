@@ -5,8 +5,8 @@ port = "/dev/ttyUSB0"
 # sleep(1)
 ser = serial.Serial(port,19200,timeout=3)
 sleep(2)
-theta_div = 1590
-phi_div = 1430
+theta_div = 1570
+phi_div = 1410
 div = str(theta_div) + "," + str(phi_div) + "\n"
 
 print("Python sending:",div.encode())

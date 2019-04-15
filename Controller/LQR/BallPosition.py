@@ -11,7 +11,7 @@ class BallPosition:
         self.vs = VideoStream(2).start()
         # allow the camera or video file to warm up
         time.sleep(2.0)
-        self.Center = np.array([353.,242.])
+        self.Center = np.array([328.,235.])
         self.LtR = 292
         self.BtT = 292
         self.length = 0.1143
@@ -25,17 +25,17 @@ class BallPosition:
             # # Green ball (H: 0 - 180, S: 0 - 255, V: 0 - 255)
             Lower = (29, 86, 6)
             Upper = (64, 255, 255)
-            print("Green")
+            # print("Green")
         elif color == "orange":
             # Orange pingpong ball
             Lower = (0, 91, 132)
             Upper = (15, 255, 255)
-            print("orange")
+            # print("orange")
         elif color == "white":
             # White ball
             Lower = (0, 0, 60)
             Upper = (0, 0, 100)
-            print("white")
+            # print("white")
         else:
             print("Please specify color")
             return position
@@ -73,7 +73,7 @@ class BallPosition:
             ((x, y), radius) = cv2.minEnclosingCircle(c)
             M = cv2.moments(c)
             center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
-            print("Center:", center)
+            # print("Center:", center)
             # update the points queue
             pts.appendleft(center)
         # loop over the set of tracked points
