@@ -10,6 +10,7 @@ from ballbeamController import ballbeamController
 from signalGenerator import signalGenerator
 from ballbeamAnimation import ballbeamAnimation
 from plotData import plotData
+from plotTopData import plotTopData
 from plotObserverData import plotObserverData
 from ballbeamTopAnimation import ballbeamTopAnimation
 
@@ -48,8 +49,8 @@ else:
 
 # instantiate the simulation plots and animation
 dataPlot = plotData()
+# TopData = plotTopData()
 top_animation = ballbeamTopAnimation(title="top view")
-
 
 t = P.t_start  # time starts at t_start
 while t < P.t_end:  # main simulation loop
@@ -76,8 +77,8 @@ while t < P.t_end:  # main simulation loop
         ## Serial stuff
         if Hardware:
             # ser.flush()
-            mult = 22.5
-            com = str(int((-u[0]*mult+90.)/180.*(570.*2.)+1000)) + "," + str(int((-u[1]*mult+90.)/180.*(410.*2.)+1000)) + "\n"
+            mult = 1#22.5
+            com = str(int((-u[0]*mult+np.pi/2.)/np.pi*(570.*2.)+1000)) + "," + str(int((-u[1]*mult+np.pi/2.)/np.pi*(410.*2.)+1000)) + "\n"
             ser.write(com.encode())
             print(com)
 
@@ -86,6 +87,7 @@ while t < P.t_end:  # main simulation loop
     top_animation.drawBallbeamTop(state)
     input_ref = [x_ref, y_ref]
     dataPlot.updatePlots(t, input_ref,state, u)
+    # TopData.updatePlots(t, input_ref,state, u)
     plt.pause(0.001)  # the pause causes the figure to be displayed during the simulation
 
 if Camera:
