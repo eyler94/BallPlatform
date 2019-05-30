@@ -19,40 +19,44 @@ class ballbeamController:
     # state feedback control using dirty derivatives to estimate zdot and thetadot
     def __init__(self,x0,y0):
 
-        ###Determine K and Ki
-        A = np.array([[0., 1., 0., 0.],
-                      [0., 0., 0., 0.],
-                      [0., 0., 0., 1.],
-                      [0., 0., 0., 0]])
-        g = 9.81
-        B = np.array([[0., 0.],
-                      [-g, 0.],
-                      [0., 0.],
-                      [0., -g]])
-        C = np.array([[1., 0., 0., 0.],
-                      [0., 0., 1., 0.]])
+        # ###Determine K and Ki
+        # A = np.array([[0., 1., 0., 0.],
+        #               [0., 0., 0., 0.],
+        #               [0., 0., 0., 1.],
+        #               [0., 0., 0., 0]])
+        # g = 9.81
+        # B = np.array([[0., 0.],
+        #               [-g, 0.],
+        #               [0., 0.],
+        #               [0., -g]])
+        # C = np.array([[1., 0., 0., 0.],
+        #               [0., 0., 1., 0.]])
+        #
+        # Caug = np.hstack((C,np.zeros((2,2))))
+        # Atemp = np.hstack((A,np.zeros((4,2))))
+        # Aaug = np.vstack((Atemp,-Caug))
+        # Baug = np.vstack((B,np.zeros((2,2))))
 
-        Caug = np.hstack((C,np.zeros((2,2))))
-        Atemp = np.hstack((A,np.zeros((4,2))))
-        Aaug = np.vstack((Atemp,-Caug))
-        Baug = np.vstack((B,np.zeros((2,2))))
+        # xmax = 0.051016
+        # xdotmax = 1.
+        # xIntmax = 0.05
+        # ymax = 0.051016
+        # ydotmax = 1.
+        # yIntmax = 0.05
+        # Q = np.diagflat([[1./xmax**2, 1./xdotmax**2],[1./ymax**2, 1./ydotmax**2],[1./xIntmax**2, 1./yIntmax**2]])
+        #
+        # R = np.eye(2)
+        # max_u = np.pi/15.
+        # R[0,0] = 1./(max_u)**2
+        # R[1,1] = 1./(max_u)**2
 
-        xmax = 0.051016
-        xdotmax = 1.
-        xIntmax = 0.05
-        ymax = 0.051016
-        ydotmax = 1.
-        yIntmax = 0.05
-        Q = np.diagflat([[1./xmax**2, 1./xdotmax**2],[1./ymax**2, 1./ydotmax**2],[1./xIntmax**2, 1./yIntmax**2]])
+        # Kall = np.asarray(lqr(Aaug,Baug,Q,R))
+        # self.K = Kall[:,:4]#np.array([[-1.342, -0.5392, 0., 0.],[0., 0., -1.342, -0.5392]])
+        # self.Kr = -np.linalg.pinv(Caug@np.linalg.pinv(Aaug-Baug@Kall)@Baug)
 
-        R = np.eye(2)
-        max_u = np.pi/15.
-        R[0,0] = 1./(max_u)**2
-        R[1,1] = 1./(max_u)**2
-
-        Kall = np.asarray(lqr(Aaug,Baug,Q,R))
-        self.K = Kall[:,:4]#np.array([[-1.342, -0.5392, 0., 0.],[0., 0., -1.342, -0.5392]])
-        self.Kr = -np.linalg.pinv(Caug@np.linalg.pinv(Aaug-Baug@Kall)@Baug)
+        #PID Terms
+        self.Kp = -2
+        self.Kd = -1
 
         self.state = np.array([[x0, 0., y0, 0.]]).T
         self.state_d1 = np.array([[x0, 0., y0, 0.]]).T
@@ -61,7 +65,7 @@ class ballbeamController:
         self.state_Array = np.ones((2,self.length))
 
         ### Integration stuff
-        self.Ki = Kall[:,4:]
+        self.Ki = 1 #Kall[:,4:]
         self.error_state = np.zeros((2,1))
         self.int_error = np.zeros((2,1))
         self.error_d1 = np.zeros((2,1))
@@ -85,16 +89,16 @@ class ballbeamController:
             self.integrateError(self.error_state, 0)
         if self.state[3,0] <= deriv_lim:
             self.integrateError(self.error_state, 1)
-        # print("error:",self.error_state,"\nIntEr:",self.int_error)
 
-        # u_unsat = self.Kr@req-self.K@self.state-self.Ki@self.int_error
-        u_unsat = -self.K@self.state-self.Ki@self.int_error
+        u_unsat = self.error_state*self.Kp - np.array([[self.state[1,0]],[self.state[3,0]]])*self.Kd
+
+        u_unsat = u_unsat-self.Ki*self.int_error
 
         u_sat = self.saturate(u_unsat)
 
         # self.integratorAntiWindup(u_sat,u_unsat)
 
-        # u = np.ones((2,1))*0.000000001
+        # u_sat = np.ones((2,1))*0.000000001
         return u_sat
 
     def derivatives(self):

@@ -14,7 +14,7 @@ from plotTopData import plotTopData
 from plotObserverData import plotObserverData
 from ballbeamTopAnimation import ballbeamTopAnimation
 
-# Hardware = False
+Hardware = False
 Hardware = True
 if Hardware:
     # Arduino Serial libraries
@@ -25,7 +25,7 @@ if Hardware:
     ser = Serial(port,19200)
     sleep(2)
 
-# Camera = False
+Camera = False
 Camera = True
 if Camera:
     from BallPosition import BallPosition
@@ -41,11 +41,11 @@ else:
 ballbeam = ballbeamDynamics()
 
 if Camera:
-    x_reference = signalGenerator(amplitude=0., frequency=0.2)
-    y_reference = signalGenerator(amplitude=0., frequency=0.2,t_offset=True)
+    x_reference = signalGenerator(amplitude=0.025, frequency=0.1)
+    y_reference = signalGenerator(amplitude=0.025, frequency=0.1,t_offset=True)
 else:
-    x_reference = signalGenerator(amplitude=0.05, frequency=0.275)
-    y_reference = signalGenerator(amplitude=0.05, frequency=0.275,t_offset=True)
+    x_reference = signalGenerator(amplitude=0.05, frequency=0.1)
+    y_reference = signalGenerator(amplitude=0.05, frequency=0.1,t_offset=True)
 
 # instantiate the simulation plots and animation
 dataPlot = plotData()
@@ -82,13 +82,13 @@ while t < P.t_end:  # main simulation loop
             ser.write(com.encode())
             print(com)
 
-    # update animation and data plots
-    state = np.array([xy[0],0.,xy[1],0.])
-    top_animation.drawBallbeamTop(state)
-    input_ref = [x_ref, y_ref]
-    dataPlot.updatePlots(t, input_ref,state, u)
-    # TopData.updatePlots(t, input_ref,state, u)
-    plt.pause(0.001)  # the pause causes the figure to be displayed during the simulation
+    # # update animation and data plots
+    # state = np.array([xy[0],0.,xy[1],0.])
+    # top_animation.drawBallbeamTop(state)
+    # input_ref = [x_ref, y_ref]
+    # dataPlot.updatePlots(t, input_ref,state, u)
+    # # TopData.updatePlots(t, input_ref,state, u)
+    # plt.pause(0.001)  # the pause causes the figure to be displayed during the simulation
 
 if Camera:
     BP.shutdown()
