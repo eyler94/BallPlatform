@@ -82,13 +82,13 @@ while t < P.t_end:  # main simulation loop
             ser.write(com.encode())
             print(com)
 
-    # update animation and data plots
-    state = np.array([xy[0],0.,xy[1],0.])
-    top_animation.drawBallbeamTop(state)
-    input_ref = [x_ref, y_ref]
-    dataPlot.updatePlots(t, input_ref,state, u)
-    # TopData.updatePlots(t, input_ref,state, u)
-    plt.pause(0.001)  # the pause causes the figure to be displayed during the simulation
+    # # update animation and data plots
+    # state = np.array([xy[0],0.,xy[1],0.])
+    # top_animation.drawBallbeamTop(state)
+    # input_ref = [x_ref, y_ref]
+    # dataPlot.updatePlots(t, input_ref,state, u)
+    # # TopData.updatePlots(t, input_ref,state, u)
+    # plt.pause(0.001)  # the pause causes the figure to be displayed during the simulation
 
 if Camera:
     BP.shutdown()
