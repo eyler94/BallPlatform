@@ -7,8 +7,8 @@ import imutils
 import time
 
 class BallPosition:
-    def __init__(self):
-        self.vs = VideoStream(2).start()
+    def __init__(self, cam):
+        self.vs = VideoStream(cam).start()
         # allow the camera or video file to warm up
         time.sleep(2.0)
         self.Center = np.array([353.,242.])

@@ -10,10 +10,10 @@ class ballbeamDynamics:
 
     def __init__(self):
         # Initial state conditions
-        self.state = np.matrix([[P.x0],          # z initial ball position
-                                [P.xdot0],      # Theta initial beam angle
-                                [P.y0],       # zdot initial ball velocity
-                                [P.ydot0]])  # Thetadot initial beam angular velocity
+        self.state = np.array([P.x0,          # z initial ball position
+                                P.xdot0,      # Theta initial beam angle
+                                P.y0,       # zdot initial ball velocity
+                                P.ydot0])  # Thetadot initial beam angular velocity
         self.th_d1 = 0.
         # self.th_dot = 0.
         self.ph_d1 = 0.
@@ -48,12 +48,17 @@ class ballbeamDynamics:
             Return xdot = f(x,u), the derivatives of the continuous states, as a matrix
         '''
         # re-label states and inputs for readability
-        x = state.item(0)
-        xdot = state.item(1)
-        y = state.item(2)
-        ydot = state.item(3)
+        x = state[0]
+        xdot = state[1]
+        y = state[2]
+        ydot = state[3]
+        # x = state.item(0)
+        # xdot = state.item(1)
+        # y = state.item(2)
+        # ydot = state.item(3)
         theta = u[0]
         thetadot = (theta - self.th_d1)/P.Ts
+        # print("theta_dot:", thetadot)
         self.th_d1 = theta
         phi = u[1]
         phidot = (phi - self.ph_d1)/P.Ts
@@ -64,7 +69,7 @@ class ballbeamDynamics:
         yddot = (1.0/self.m1)*(self.m1*y*phidot**2
                                - self.m1*self.g*np.sin(phi))
         # build xdot and return
-        state_dot = np.matrix([[xdot],[xddot],[ydot],[yddot]])
+        state_dot = np.array([xdot, xddot, ydot, yddot])
         return state_dot
 
     def outputs(self):
@@ -73,16 +78,20 @@ class ballbeamDynamics:
             [z, theta] with added Gaussian noise
         '''
         # re-label states for readability
-        x = self.state.item(0)+np.random.randn()*0.00001
-        xdot = self.state.item(1)+np.random.randn()*0.00001
-        y = self.state.item(2)+np.random.randn()*0.00001
-        ydot = self.state.item(3)+np.random.randn()*0.00001
+        # x = self.state.item(0)+np.random.randn()*0.00001
+        # xdot = self.state.item(1)+np.random.randn()*0.00001
+        # y = self.state.item(2)+np.random.randn()*0.00001
+        # ydot = self.state.item(3)+np.random.randn()*0.00001
+        x = self.state[0]+np.random.randn()*0.00001
+        # xdot = self.state[1]+np.random.randn()*0.00001
+        y = self.state[2]+np.random.randn()*0.00001
+        # ydot = self.state[3]+np.random.randn()*0.00001
         # theta = self.state.item(1)
         # # add Gaussian noise to outputs
         # z_m = z + random.gauss(0, 0.001)
         # theta_m = theta + random.gauss(0, 0.001)
         # return measured outputs
-        return [x, y]
+        return x, y
         # return [z_m, theta_m]
 
     def states(self):

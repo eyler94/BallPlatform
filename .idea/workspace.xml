@@ -2,49 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54378439-9358-446a-9f99-0c7b32d3f394" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Controller/LQR/temp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/michael.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/BallPlatform.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BallPlatform.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ArduinoSide/SerialComms/CenterPlatform.py" beforeDir="false" afterPath="$PROJECT_DIR$/ArduinoSide/SerialComms/CenterPlatform.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/LQR/BallPosition.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/LQR/BallPosition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/LQR/ballbeamController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/LQR/ballbeamController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/LQR/ballbeamDynamics.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/LQR/ballbeamDynamics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/LQR/ballbeamSim.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/LQR/ballbeamSim.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/SStesting.mlx" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/SStesting.mlx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ball-tracking/ball_tracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/ball-tracking/ball_tracking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ArduinoSide/SerialComms/Serialwrite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ArduinoSide/SerialComms/Serialwrite.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ControllerPID/PID/BallPosition.py" beforeDir="false" afterPath="$PROJECT_DIR$/ControllerPID/PID/BallPosition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ControllerPID/PID/ballbeamController.py" beforeDir="false" afterPath="$PROJECT_DIR$/ControllerPID/PID/ballbeamController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ControllerPID/PID/ballbeamControllerWorksWithExtra.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ControllerPID/PID/ballbeamDynamics.py" beforeDir="false" afterPath="$PROJECT_DIR$/ControllerPID/PID/ballbeamDynamics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ControllerPID/PID/ballbeamParamPID.py" beforeDir="false" afterPath="$PROJECT_DIR$/ControllerPID/PID/ballbeamParamPID.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ControllerPID/PID/ballbeamSim.py" beforeDir="false" afterPath="$PROJECT_DIR$/ControllerPID/PID/ballbeamSim.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ControllerPID/PID/ballbeamSimDiscrete.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ControllerPID/ballbeamAnimation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ControllerPID/ballbeamParam.py" beforeDir="false" afterPath="$PROJECT_DIR$/ControllerPID/ballbeamParam.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ControllerPID/plotObserverData.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ControllerPID/plotTopData.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ball-tracking/BallPosition.py" beforeDir="false" afterPath="$PROJECT_DIR$/ball-tracking/BallPosition.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Controller/LQR/ballbeamSim.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Controller/LQR/ballbeamController.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -56,87 +36,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Controller/plotData.py" />
-        <option value="$PROJECT_DIR$/Controller/hw_b/ballbeamSim.py" />
-        <option value="$PROJECT_DIR$/Controller/hw13/ballbeamController.py" />
-        <option value="$PROJECT_DIR$/Controller/plotObserverData.py" />
-        <option value="$PROJECT_DIR$/Controller/signalGenerator.py" />
-        <option value="$PROJECT_DIR$/Controller/ballbeamDynamics.py" />
-        <option value="$PROJECT_DIR$/Controller/hw13/ballbeamParamHW13.py" />
-        <option value="$PROJECT_DIR$/ArduinoSide/Serialwrite.py" />
-        <option value="$PROJECT_DIR$/Controller/ballbeamParam.py" />
-        <option value="$PROJECT_DIR$/Controller/hw13/ballbeamSim.py" />
-        <option value="$PROJECT_DIR$/Controller/ObserverIntegrator/ballbeamSim.py" />
-        <option value="$PROJECT_DIR$/Controller/LQR/ballbeamDynamics.py" />
-        <option value="$PROJECT_DIR$/Controller/LQR/temp.py" />
-        <option value="$PROJECT_DIR$/Controller/LQR/ballbeamSim.py" />
-        <option value="$PROJECT_DIR$/Controller/LQR/ballbeamController.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1920" />
-    <option name="y" value="27" />
-    <option name="width" value="1920" />
-    <option name="height" value="1053" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="BallPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BallPlatform" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BallPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BallPlatform" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BallPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BallPlatform" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-              <item name="LQR" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BallPlatform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BallPlatform" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-              <item name="ObserverIntegrator" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+  <component name="ProjectId" id="1aPghnFH8tSYCxovgDx4YQ2u0OL" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python.ballbeamSim (3)">
+  <component name="RunManager" selected="Python.ballbeamSim">
     <configuration name="Serialwrite" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="BallPlatform" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -150,27 +62,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ArduinoSide/Serialwrite.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="ballbeamParamHW13" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="BallPlatform" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Controller/hw13" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Controller/hw13/ballbeamParamHW13.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -228,6 +119,27 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ControllerPID/PID" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ControllerPID/PID/ballbeamSim.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ballbeamSim" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="BallPlatform" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Controller/hw13" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -244,11 +156,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.ballbeamSim" />
         <item itemvalue="Python.ballbeamSim (3)" />
         <item itemvalue="Python.ballbeamSim (2)" />
         <item itemvalue="Python.ballbeamSim" />
         <item itemvalue="Python.Serialwrite" />
-        <item itemvalue="Python.ballbeamParamHW13" />
       </list>
     </recent_temporary>
   </component>
@@ -265,47 +177,63 @@
     </task>
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="1920" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1735232" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32785088" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.35745615" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1735232" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32894737" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.30701753" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
+  <component name="WindowStateProjectService">
+    <state x="446" y="107" width="777" height="842" key="#ballbeamSim_(1)" timestamp="1586643210311">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="446" y="107" width="777" height="842" key="#ballbeamSim_(1)/446.1050.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1586643210311" />
+    <state x="446" y="107" width="777" height="842" key="#ballbeamSim_(3)" timestamp="1586643174435">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="446" y="107" width="777" height="842" key="#ballbeamSim_(3)/446.1050.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1586643174435" />
+    <state x="681" y="0" width="989" height="1050" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1586658283015">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="681" y="0" width="989" height="1050" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/446.1050.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1586658283015" />
+    <state width="1896" height="434" key="GridCell.Tab.0.bottom" timestamp="1587008090234">
+      <screen x="446" y="1050" width="1920" height="1080" />
+    </state>
+    <state width="1632" height="240" key="GridCell.Tab.0.bottom/446.1050.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1586794067165" />
+    <state width="1896" height="434" key="GridCell.Tab.0.bottom/446.1050.1920.1080/0.0.1680.1050@446.1050.1920.1080" timestamp="1587008090234" />
+    <state width="1896" height="434" key="GridCell.Tab.0.center" timestamp="1587008090234">
+      <screen x="446" y="1050" width="1920" height="1080" />
+    </state>
+    <state width="1632" height="240" key="GridCell.Tab.0.center/446.1050.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1586794067165" />
+    <state width="1896" height="434" key="GridCell.Tab.0.center/446.1050.1920.1080/0.0.1680.1050@446.1050.1920.1080" timestamp="1587008090234" />
+    <state width="1896" height="434" key="GridCell.Tab.0.left" timestamp="1587008090234">
+      <screen x="446" y="1050" width="1920" height="1080" />
+    </state>
+    <state width="1632" height="240" key="GridCell.Tab.0.left/446.1050.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1586794067165" />
+    <state width="1896" height="434" key="GridCell.Tab.0.left/446.1050.1920.1080/0.0.1680.1050@446.1050.1920.1080" timestamp="1587008090234" />
+    <state width="1896" height="434" key="GridCell.Tab.0.right" timestamp="1587008090234">
+      <screen x="446" y="1050" width="1920" height="1080" />
+    </state>
+    <state width="1632" height="240" key="GridCell.Tab.0.right/446.1050.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1586794067165" />
+    <state width="1896" height="434" key="GridCell.Tab.0.right/446.1050.1920.1080/0.0.1680.1050@446.1050.1920.1080" timestamp="1587008090234" />
+    <state width="1896" height="434" key="GridCell.Tab.1.bottom" timestamp="1587008090234">
+      <screen x="446" y="1050" width="1920" height="1080" />
+    </state>
+    <state width="1632" height="240" key="GridCell.Tab.1.bottom/446.1050.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1586794067165" />
+    <state width="1896" height="434" key="GridCell.Tab.1.bottom/446.1050.1920.1080/0.0.1680.1050@446.1050.1920.1080" timestamp="1587008090234" />
+    <state width="1896" height="434" key="GridCell.Tab.1.center" timestamp="1587008090234">
+      <screen x="446" y="1050" width="1920" height="1080" />
+    </state>
+    <state width="1632" height="240" key="GridCell.Tab.1.center/446.1050.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1586794067165" />
+    <state width="1896" height="434" key="GridCell.Tab.1.center/446.1050.1920.1080/0.0.1680.1050@446.1050.1920.1080" timestamp="1587008090234" />
+    <state width="1896" height="434" key="GridCell.Tab.1.left" timestamp="1587008090234">
+      <screen x="446" y="1050" width="1920" height="1080" />
+    </state>
+    <state width="1632" height="240" key="GridCell.Tab.1.left/446.1050.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1586794067165" />
+    <state width="1896" height="434" key="GridCell.Tab.1.left/446.1050.1920.1080/0.0.1680.1050@446.1050.1920.1080" timestamp="1587008090234" />
+    <state width="1896" height="434" key="GridCell.Tab.1.right" timestamp="1587008090234">
+      <screen x="446" y="1050" width="1920" height="1080" />
+    </state>
+    <state width="1632" height="240" key="GridCell.Tab.1.right/446.1050.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1586794067165" />
+    <state width="1896" height="434" key="GridCell.Tab.1.right/446.1050.1920.1080/0.0.1680.1050@446.1050.1920.1080" timestamp="1587008090234" />
+    <state x="351" y="160" width="977" height="737" key="SettingsEditor" timestamp="1586646359067">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="351" y="160" width="977" height="737" key="SettingsEditor/446.1050.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1586646359067" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -315,161 +243,12 @@
           <line>91</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ControllerPID/PID/ballbeamSim.py</url>
+          <line>57</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file:///usr/lib/python3.6/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="331" selection-start-line="331" selection-end-line="331" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/EE773/venv/lib/python3.6/site-packages/matplotlib/transforms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="1830" selection-start-line="1830" selection-end-line="1830" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/hw_b/ballbeamSim.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="42" column="71" selection-start-line="42" selection-start-column="71" selection-end-line="42" selection-end-column="71" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/plotData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="45" column="77" lean-forward="true" selection-start-line="45" selection-start-column="77" selection-end-line="45" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/hw13/ballbeamController.py" />
-    <entry file="file://$PROJECT_DIR$/Controller/signalGenerator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/ballbeamDynamics.py" />
-    <entry file="file://$PROJECT_DIR$/Controller/hw13/ballbeamParamHW13.py" />
-    <entry file="file://$PROJECT_DIR$/ArduinoSide/Serialwrite.py" />
-    <entry file="file://$PROJECT_DIR$/Controller/hw13/ballbeamSim.py" />
-    <entry file="file://$PROJECT_DIR$/Controller/ballbeamParam.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/ballbeamAnimation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/ObserverIntegrator/ballbeamSim.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="36" column="50" lean-forward="true" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/plotObserverData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/EE773/venv/lib/python3.6/site-packages/numpy/core/shape_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="339" selection-start-line="339" selection-end-line="339" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/EE773/venv/lib/python3.6/site-packages/scipy/linalg/_solvers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="795" selection-start-line="795" selection-end-line="795" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="1134" selection-start-line="1134" selection-end-line="1134" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/EE773/venv/lib/python3.6/site-packages/numpy/matrixlib/defmatrix.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="150" selection-start-line="150" selection-end-line="150" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/LQR/ballbeamDynamics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="66" column="29" lean-forward="true" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/EE773/venv/lib/python3.6/site-packages/numpy/linalg/linalg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="550" selection-start-line="550" selection-end-line="550" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/LQR/temp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3145">
-          <caret line="185" selection-start-line="185" selection-end-line="185" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/LQR/ballbeamSim.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/LQR/ballbeamController.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>

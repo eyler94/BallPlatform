@@ -12,7 +12,7 @@ phi_div = 1300
 reg = str(theta) + "," + str(phi) + "\n"
 div = str(theta_div) + "," + str(phi_div) + "\n"
 
-timer = 0.003125
+timer = 0.5
 
 for iter in range(0,100):
     # print("div",div,div.encode())

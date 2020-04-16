@@ -7,8 +7,8 @@ import imutils
 import time
 
 class BallPosition:
-    def __init__(self):
-        self.vs = VideoStream(2).start()
+    def __init__(self, cam):
+        self.vs = VideoStream(cam).start()
         # allow the camera or video file to warm up
         time.sleep(2.0)
         self.Center = np.array([328.,235.])
@@ -95,6 +95,8 @@ class BallPosition:
         if color == "green":
             self.Center = center
         elif color == "orange":
+            if center is None:
+                center = self.Center
             x = round((self.Center[0]-center[0])*self.length/self.LtR,4)
             y = round((self.Center[1]-center[1])*self.length/self.BtT,4)
             center = (x,y)
